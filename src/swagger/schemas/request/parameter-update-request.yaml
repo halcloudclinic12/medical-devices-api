@@ -1,0 +1,23 @@
+type: object
+properties:        
+  name: 
+    type: string
+  label: 
+    type: string
+  ranges: 
+    type: array
+    items:
+      type: object
+      properties:
+        _id:
+          type: string 
+        min:
+          type: string 
+        max:
+          type: string 
+        label:
+          type: string 
+        sort_order:
+          type: number
+  unit: 
+    type: string

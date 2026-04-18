@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # app:
+  #   build: .
+  #   container_name: healthbox-api
+  #   ports:
+  #     - "${SERVER_PORT}:${SERVER_PORT}" # reads from .env
+  #   env_file:
+  #     - .env.docker
+  #   depends_on:
+  #     - mongo
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:

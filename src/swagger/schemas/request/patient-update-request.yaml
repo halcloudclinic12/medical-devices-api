@@ -1,0 +1,15 @@
+type: object
+properties:        
+  name: 
+    type: string
+    description: User first name
+  gender: 
+    type: string
+    description: User gender
+  email: 
+    type: string
+    description: User email
+    required: true
+  mobile: 
+    type: string
+    description: User mobile

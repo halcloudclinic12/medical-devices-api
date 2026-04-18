@@ -1,0 +1,14 @@
+type: object
+properties:        
+  total_patients: 
+    type: integer
+    description: Number of patients
+  total_patients_today: 
+    type: integer
+    description: Number of patients today
+  total_tests: 
+    type: integer
+    description: Number of tests
+  total_tests_today: 
+    type: integer
+    description: Number of tests today

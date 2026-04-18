@@ -1,0 +1,21 @@
+type: object
+properties:        
+  _id: 
+    type: string
+    description: Id of patient
+  name: 
+    type: string
+    description: 
+  gender: 
+    type: string
+    description: 
+  mobile: 
+    type: string
+    description: 
+  is_active: 
+    type: boolean
+    description: 
+  created_at: 
+    type: datetime
+  image_file: 
+    type: string

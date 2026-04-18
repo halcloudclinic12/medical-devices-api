@@ -1,0 +1,19 @@
+type: array
+items:
+  type: object
+  properties:
+    test_id: 
+      type: integer
+      description: Local test id on app
+    clinic_id: 
+      type: string
+      description: Id of clinic
+    patient_id: 
+      type: string
+      description: Id of patient
+    test_type: 
+      type: string
+      description: Type of test
+    created_at: 
+      type: string
+      format: datetime

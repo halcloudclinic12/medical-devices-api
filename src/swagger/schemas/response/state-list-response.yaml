@@ -1,0 +1,29 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      total:
+        type: integer
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            _id: 
+              type: string
+            name: 
+              type: string
+              description: 
+            code: 
+              type: string
+              description: 
+            country: 
+              type: object
+              description: 
+            is_active: 
+              type: boolean
+              description: 
+            created_at: 
+              type: string
+              format: datetime

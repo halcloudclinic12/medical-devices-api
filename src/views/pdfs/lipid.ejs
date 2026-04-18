@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pdf.css" />
+</head>
+
+<body class="container mt-4">
+    <header class="text-center mb-4">
+        <table>
+            <tr>
+                <td style="width:20%">
+                    <img src="data:image/jpeg;base64,<%= logo %>" class="logo" />
+                </td>
+                <td style="width:50%">
+                    <h1>
+                        <%= patient.name %>
+                    </h1>
+                </td>
+                <td style="width:30%">&nbsp;</td>
+            </tr>
+        </table>
+    </header>
+
+    <main>
+        <div class="p-4">
+            <div class="row mb-3">
+                <div class="col-md-9">
+                    <strong>Clinic :</strong>
+                    <%= clinic.name %>, <%= city.name %>, <%= clinic.state_name %><br />
+                                <div class="datetime">
+                                    <%= new Date(test.created_at).toLocaleString('en-GB', { day: '2-digit' ,
+                                        month: 'short' , year: 'numeric' , hour: '2-digit' , minute: '2-digit' , hour12:
+                                        true }) %>
+                                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Range</th>
+                            <th>Value</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% [ { label: "TC" , value: test.tc, result: test.tc_result, range: test.tc_range }, {
+                            label: "TG" , value: test.tg, result: test.tg_result, range: test.tg_range }, { label: "HDL"
+                            , value: test.hdl, result: test.hdl_result, range: test.hdl_range }, { label: "LDL" , value:
+                            test.ldl, result: test.ldl_result, range: test.ldl_range }, { label: "TC HDL" , value:
+                            test.tc_hdl, result: test.tc_hdl_result, range: test.tc_hdl_range } ].forEach(item=> { %>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <%= item.label ?? '-' %>
+                                    </strong>
+                                </td>
+                                <td>
+                                    <%= item.range ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.value ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.result ?? '-' %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h3>Parameters Explanation</h3>
+            <p>
+                <b>1. TG (Triglycerides):</b> A type of fat found in the blood. Your body uses it for energy, but high
+                levels can increase risk of heart disease and pancreatitis.
+            </p>
+            <p>
+                <b>2. TC (Total Cholesterol):</b> The overall amount of cholesterol in the blood. It includes LDL, HDL,
+                and other lipid components.
+            </p>
+            <p>
+                <b>3. HDL (High-Density Lipoprotein):</b> Often called the “good cholesterol.” Higher HDL helps remove
+                bad cholesterol from the blood, protecting against heart disease.
+            </p>
+            <p>
+                <b>4. LDL (Low-Density Lipoprotein):</b> Often called the “good cholesterol.” Higher HDL helps remove
+                bad cholesterol from the blood, protecting against heart disease.
+            </p>
+            <p>
+                <b>5. LDL (Low-Density Lipoprotein):</b> Known as “bad cholesterol.” High LDL can lead to plaque buildup
+                in arteries, increasing the risk of heart attack and stroke.
+            </p>
+            <p>
+                <b>6. TC/HDL Ratio:</b> The ratio of total cholesterol to HDL. Lower ratios are better, as they suggest
+                more “good” cholesterol compared to total cholesterol.
+            </p>
+        </div>
+
+
+        <div>
+            <h3>Disclaimer</h3>
+            <ul>
+                <li>
+                    This report is not intended to replace but to lead by providing comprehensive information. It is
+                    recommended that you consult your doctor/physician for interpretation of results.
+                </li>
+                <li>
+                    All reports might not be applicable for individuals less than 18, pregnant women or individuals
+                    suffering from diseases for which health test has not been performed or symptoms not diagnosed.
+                </li>
+                <li>
+                    This report is based on preventive health test screening and is meant for a healthy lifestyle. It
+                    does not provide any recommendation for life threatening situations.
+                </li>
+                <li>
+                    It is strongly recommended to take required precautions for allergic reactions or sensitivities.
+                    Online screening tools are not diagnostic instruments. You are encouraged to share your results with
+                    a physician or healthcare provider.
+                </li>
+                <li>
+                    The content is provided for information purposes only in believed to be serving as a preventive
+                    health screening and is not intended as and should not be considered to a legal or financial advice.
+                </li>
+                <li>
+                    References and links to third parties do not constitute any endorsements or warranty by this report
+                    generated at the Health Kiosk. The health ATM hereby disclaims all express and implied warranties of
+                    any kind.
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="text-center mt-4">
+        <p>&copy; HAL Cloud Clinic</p>
+    </footer>
+</body>
+
+</html>

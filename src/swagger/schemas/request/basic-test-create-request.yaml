@@ -1,0 +1,154 @@
+type: object
+properties:        
+  patient_id: 
+    type: string
+    description: Patient id
+  clinic_id: 
+    type: string
+    description: Clinic id
+  test_type: 
+    type: string
+
+  height: 
+    type: string
+  height_result: 
+    type: string
+
+  weight: 
+    type: string
+  weight_result: 
+    type: string
+
+  lean_body_weight: 
+    type: string
+  lean_body_weight_result: 
+    type: string
+
+  physique: 
+    type: string
+  health_score: 
+    type: string
+
+  temperature: 
+    type: string
+  temperature_result: 
+    type: string
+
+  bmi: 
+    type: string
+  bmi_result: 
+    type: string
+
+  bmr: 
+    type: string
+  bmr_result: 
+    type: string
+
+  bone_mass: 
+    type: string
+  bone_mass_result: 
+    type: string
+
+  body_fat: 
+    type: string
+  body_fat_result: 
+    type: string
+
+  fat_free_weight: 
+    type: string
+  fat_free_weight_result: 
+    type: string
+
+  subcutaneous_fat: 
+    type: string
+  subcutaneous_fat_result: 
+    type: string
+
+  visceral_fat: 
+    type: string
+  visceral_fat_result: 
+    type: string
+
+  fat_level: 
+    type: string
+  control_weight: 
+    type: string
+
+  muscle_mass: 
+    type: string
+  muscle_mass_result: 
+    type: string
+
+  muscle_rate: 
+    type: string
+  muscle_rate_result: 
+    type: string
+
+  skeletal_muscle: 
+    type: string
+  skeletal_muscle_result: 
+    type: string
+
+  blood_pressure_diastolic: 
+    type: string
+  blood_pressure_diastolic_result: 
+    type: string
+
+  blood_pressure_systolic: 
+    type: string
+  blood_pressure_systolic_result: 
+    type: string
+
+  body_water: 
+    type: string
+  body_water_result: 
+    type: string
+
+  protein: 
+    type: string
+  protein_result: 
+    type: string
+
+  oxygen: 
+    type: string
+  oxygen_result: 
+    type: string
+
+  pulse: 
+    type: string
+  pulse_result: 
+    type: string
+
+  meta_age: 
+    type: string
+  meta_age_result: 
+    type: string
+
+  bilirubin: 
+    type: string
+  bilirubin_result: 
+    type: string
+
+  creatinine: 
+    type: string
+  creatinine_result: 
+    type: string
+
+  sugar: 
+    type: string
+  sugar_result: 
+    type: string
+
+  hemoglobin: 
+    type: string
+  hemoglobin_result: 
+    type: string
+
+  eye_left_vision: 
+    type: string
+  eye_left_result: 
+    type: string
+  eye_right_vision: 
+    type: string
+  eye_right_result: 
+    type: string

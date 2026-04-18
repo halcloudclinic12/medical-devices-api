@@ -1,0 +1,10 @@
+type: object
+properties:        
+  _id: 
+    type: string
+    description: Id of patient
+  patient_id: 
+    type: string
+    description: 
+  created_at: 
+    type: datetime

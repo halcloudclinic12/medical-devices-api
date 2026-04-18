@@ -1,0 +1,24 @@
+type: object
+properties:        
+  _id: 
+    type: string
+    description: Id of user
+  first_name: 
+    type: string
+    description: 
+  last_name: 
+    type: string
+    description: 
+  gender: 
+    type: string
+    description: 
+  mobile: 
+    type: string
+    description: 
+  is_active: 
+    type: boolean
+    description: 
+  created_at: 
+    type: datetime
+  image_file: 
+    type: string

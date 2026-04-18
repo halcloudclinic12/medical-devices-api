@@ -1,0 +1,20 @@
+type: object
+properties:        
+  first_name: 
+    type: string
+    description: User first name
+    required: true
+  last_name: 
+    type: string
+    description: User last name
+  gender: 
+    type: string
+    description: User gender
+    required: true
+  email: 
+    type: string
+    description: User email
+    required: true
+  mobile: 
+    type: string
+    description: User mobile

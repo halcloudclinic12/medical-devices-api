@@ -1,0 +1,23 @@
+[
+    {
+        "firstName": "Rajesh",
+        "lastName": "Kumar",
+        "companyName": "HealthCare Plus",
+        "email": "rajesh.kumar@healthcareplus.com",
+        "phoneNumber": "9876543210"
+    },
+    {
+        "firstName": "Priya",
+        "lastName": "Sharma",
+        "companyName": "MediCare Solutions",
+        "email": "priya.sharma@medicaresolutions.com",
+        "phoneNumber": "9876543211"
+    },
+    {
+        "firstName": "Amit",
+        "lastName": "Patel",
+        "companyName": "Wellness Group",
+        "email": "amit.patel@wellnessgroup.com",
+        "phoneNumber": "9876543212"
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "email": "admin@healthbox.com",
+        "gender": "male",
+        "name": "Admin",
+        "first_name": "Admin",
+        "last_name": "",
+        "mobile": "0000000000",
+        "password": "123456",
+        "username": "admin@healthbox.com",
+        "user_type": "ADMINISTRATOR",
+        "image_file": null,
+        "is_active": true,
+        "is_deleted": true,
+        "updated_at": null,
+        "is_test_account": false,
+        "role": {},
+        "password_resets": []
+    }
+]

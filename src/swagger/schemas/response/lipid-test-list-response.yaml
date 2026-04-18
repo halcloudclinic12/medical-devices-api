@@ -1,0 +1,54 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      total:
+        type: integer
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            _id: 
+              type: string
+              description: Id of patient
+            patient_id: 
+              type: string
+              description: 
+            test_type:
+              type: string
+              description: 
+            tc: 
+              type: string
+              description: 
+            tc_range: 
+              type: string
+              description: 
+            tg: 
+              type: string
+              description: 
+            tg_range: 
+              type: string
+              description: 
+            hdl: 
+              type: string
+              description: 
+            hdl_range: 
+              type: string
+              description: 
+            ldl: 
+              type: string
+              description: 
+            ldl_range: 
+              type: string
+              description: 
+            tc_hdl: 
+              type: string
+              description: 
+            tc_hdl_range: 
+              type: string
+              description: 
+            created_at: 
+              type: string
+              format: datetime

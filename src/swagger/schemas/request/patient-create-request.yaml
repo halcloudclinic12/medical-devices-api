@@ -1,0 +1,18 @@
+type: object
+properties:        
+  clinic_id: 
+    type: string
+    description: Id of clinic where patient is registered
+  name: 
+    type: string
+    description: User name
+  gender: 
+    type: string
+    description: User gender
+  email: 
+    type: string
+    description: User email
+    required: true
+  mobile: 
+    type: string
+    description: User mobile

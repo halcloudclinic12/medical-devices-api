@@ -1,0 +1,41 @@
+type: object
+properties:        
+  patient_id: 
+    type: string
+    description: Patient id
+  clinic_id: 
+    type: string
+    description: Clinic id
+  test_type: 
+    type: string
+
+  tc: 
+    type: string
+    description: 
+  tc_result: 
+    type: string
+    description: 
+  tg: 
+    type: string
+    description: 
+  tg_result: 
+    type: string
+    description: 
+  hdl: 
+    type: string
+    description: 
+  hdl_result: 
+    type: string
+    description: 
+  ldl: 
+    type: string
+    description: 
+  ldl_result: 
+    type: string
+    description: 
+  tc_hdl: 
+    type: string
+    description: 
+  tc_hdl_result: 
+    type: string
+    description: 

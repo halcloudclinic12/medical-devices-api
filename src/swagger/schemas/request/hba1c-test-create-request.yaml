@@ -1,0 +1,17 @@
+type: object
+properties:        
+  patient_id: 
+    type: string
+    description: Patient id
+  clinic_id: 
+    type: string
+    description: Clinic id
+  test_type: 
+    type: string
+
+  hba1c: 
+    type: string
+    description: 
+  hba1c_result: 
+    type: string
+    description: 

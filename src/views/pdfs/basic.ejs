@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pdf.css" />
+</head>
+
+<body class="container mt-4">
+    <header class="text-center mb-4">
+        <table>
+            <tr>
+                <td style="width:20%">
+                    <img src="data:image/jpeg;base64,<%= logo %>" class="logo" />
+                </td>
+                <td style="width:50%">
+                    <h1>
+                        <%= patient.name %>
+                    </h1>
+                </td>
+                <td style="width:30%">&nbsp;</td>
+            </tr>
+        </table>
+    </header>
+
+    <main>
+        <div class="p-4">
+            <div class="row mb-3">
+                <div class="col-md-9">
+                    <strong>Clinic :</strong>
+                    <%= clinic.name %>, <%= city.name %>, <%= city.state_name %><br />
+                                <div class="datetime">
+                                    <%= new Date(test.created_at).toLocaleString('en-GB', { day: '2-digit' ,
+                                        month: 'short' , year: 'numeric' , hour: '2-digit' , minute: '2-digit' , hour12:
+                                        true }) %>
+                                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Range</th>
+                            <th>Value</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% [ { label: "Height" , value: test.height, result: test.height_result, range:
+                            test.height_range }, { label: "Weight" , value: test.weight, result: test.weight_result,
+                            range: test.weight_range }, { label: "Lean Body Weight" , value: test.lean_body_weight,
+                            result: test.lean_body_weight_result, range: test.body_weight_range }, { label: "Physique" ,
+                            value: test.physique, result: test.health_score, range: test.health_score_range }, {
+                            label: "Temperature" , value: test.temperature, result: test.temperature_result, range:
+                            test.temperature_range }, { label: "BMI" , value: test.bmi, result: test.bmi_result, range:
+                            test.bmi_range }, { label: "BMR" , value: test.bmr, result: test.bmr_result, range:
+                            test.bmr_range }, { label: "Bone Mass" , value: test.bone_mass, result:
+                            test.bone_mass_result, range: test.bone_mass_range }, { label: "Body Fat" , value:
+                            test.body_fat, result: test.body_fat_result, range: test.body_fat_range }, {
+                            label: "Fat Free Weight" , value: test.fat_free_weight, result: test.fat_free_weight_result,
+                            range: test.fat_free_weight_range }, { label: "Subcutaneous Fat" , value:
+                            test.subcutaneous_fat, result: test.subcutaneous_fat_result, range:
+                            test.subcutaneous_fat_range }, { label: "Visceral Fat" , value: test.visceral_fat, result:
+                            test.visceral_fat_result, range: test.visceral_fat_range }, { label: "Fat level" , value:
+                            test.fat_level, range: test.fat_level_range}, {label: "Control weight" , value:
+                            test.control_weight, result: test.control_weight_result, range: test.control_weight_range },
+                            { label: "Muscle Mass" , value: test.muscle_mass, result: test.muscle_mass_result, range:
+                            test.muscle_mass_range }, { label: "Muscle Rate" , value: test.muscle_rate, result:
+                            test.muscle_rate_result, range: test.muscle_rate_range }, { label: "Skeletal Muscle" ,
+                            value: test.skeletal_muscle, result: test.skeletal_muscle_result, range:
+                            test.skeletal_muscle_range }, { label: "Blood Pressure Diastolic" , value:
+                            test.blood_pressure_diastolic, result: test.blood_pressure_diastolic_result, range:
+                            test.blood_pressure_diastolic_range }, { label: "Blood Pressure Systolic" , value:
+                            test.blood_pressure_systolic, result: test.blood_pressure_systolic_result, range:
+                            test.blood_pressure_systolic_range }, { label: "Body Water" , value: test.body_water,
+                            result: test.body_water_result, range: test.body_water_range }, { label: "Protein" , value:
+                            test.protein, result: test.protein_result, range: test.protein_range }, { label: "Oxygen" ,
+                            value: test.oxygen, result: test.oxygen_result, range: test.oxygen_range }, { label: "Pulse"
+                            , value: test.pulse, result: test.pulse_result, range: test.pulse_range }, {
+                            label: "Meta Age" , value: test.meta_age, result: test.meta_age_result, range:
+                            test.meta_age_range }, { label: "Bilirubin" , value: test.bilirubin, result:
+                            test.bilirubin_result, range: test.bilirubin_range }, { label: "Creatinine" , value:
+                            test.creatinine, result: test.creatinine_result, range: test.creatinine_range }, {
+                            label: "Sugar" , value: test.sugar, result: test.sugar_result, range: test.sugar_range }, {
+                            label: "Hemoglobin" , value: test.hemoglobin, result: test.hemoglobin_result, range:
+                            test.hemoglobin_range } ].forEach(item=> { %>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <%= item.label ?? '-' %>
+                                    </strong>
+                                </td>
+                                <td>
+                                    <%= item.range ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.value ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.result ?? '-' %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h3>Parameters Explanation</h3>
+            <p>
+                <b>1. Body Fat Percentage:</b> Body Fat Percentage is the proporation of body fat weight to the total
+                body weight. Higher body fat % can damage your long-term health.
+            </p>
+            <p>
+                <b>2. Visceral Fat:</b> Visceral fat is located deep in the core abdominal area, surrounding and
+                protecting the vital organs healthy level of visceral fat directly reduces the risk of certain diseases.
+            </p>
+            <p>
+                <b>3. Muscle Mass:</b> Muscle mass is weight of all muscles tissue in your body including skeletal,
+                cardiac & smooth muscles. Higher muscle mass indicates the good muscle health.
+            </p>
+            <p>
+                <b>4. Body Water:</b> It is the total amount of fluid in the body expressed as a percentage of total
+                body weight. Lower body water % can effect the essential body processes like metabolism and
+                thermoregulation.
+            </p>
+            <p>
+                <b>5. Bone Mass:</b> This is the weight of total bone tissue (Bone minerals + Bone Matrix) in your body.
+                Higher bone mass indicates better bone health.
+            </p>
+            <p>
+                <b>6. Physique Rating:</b> The amount of muscle and body fat levels decides your physique rating.
+                Depending on physique rating human body type can be differentiated in nine body types. As your activity
+                level changes, the balance of body fat and muscle mass will gradually change, which in affects your
+                overall physique.
+            </p>
+            <p>
+                <b>7. Basal Metabolic Rate (BMR):</b> The BMR or Basal Metabolic Rate is daily minimum level of energy
+                or calories your body requires when at rest (including sleeping) in order to function effectively.
+            </p>
+            <p>
+                <b>8. Metabolic Age:</b> It is a predicted age of the metabolism of your body. If your metabolic age is
+                higher than your actual age, it's an indication that you need to improve your metabolic rate.
+            </p>
+            <p>
+                <b>9. Body Mass Index (BMI):</b> A standardized ratio of weight to height used as a general indicator of
+                health.
+            </p>
+            <p>
+                <b>10. Fat Free Weight:</b> Fat-free mass, also known as lean body mass, refers
+                to all of your body components except fat. It includes your body's water, bone, organs, and muscle
+                content.
+            </p>
+            <p>
+                <b>11. Subcutaneous Fat:</b> It is the proportional weight of fat below the skin to the total body
+                weight. Higher subcutaneous fat value is an indicator of bad physical health.
+            </p>
+            <p>
+                <b>12. Skeletal Muscle %:</b> Skeletal muscles are attached to bones by tendons, and they produce all
+                the
+                movements of body parts in relation to each other.
+            </p>
+            <p>
+                <b>13. Protein %:</b> It is the proportional weight of body protein components to the total body
+                weight. Adequate protein levels are essential for normal body function.
+            </p>
+            <p>
+                <b>14. Health Score:</b> Your health score is calculated by assessment of all body
+                parameters. The higher health score is an indication of good physical health.
+            </p>
+            <p>
+                <b>15. Blood Pressure:</b> Blood pressure is determined both by the amount of blood your heart pumps and
+                the amount of resistance to blood flow in your arteries. The more blood your heart pumps and the
+                narrower your arteries, the higher your blood pressure. Uncontrolled high blood pressure increases your
+                risk of serious health problems, including heart attack and stroke.
+            </p>
+            <p>
+                <b>16. Oxygen Saturation:</b> Oxygen saturation is a measure of how much oxygen the blood is carrying as
+                a percentage of the maximum it could carry. Low level of oxygen saturation can cause mild problems such
+                as headaches and shortness of breath.
+            </p>
+            <p>
+                <b>17. Hemoglobin:</b> Hemoglobin is a protein found in red blood cells. It gives blood its red color,
+                and its job is to carry oxygen throughout your body. Low hemoglobin levels usually indicate that a
+                person has anemia.
+            </p>
+            <p>
+                <b>18. Glucose: </b>Conditions that can result in an elevated blood glucose level include: Acromegaly,
+                Acute stress (response to trauma, heart attack, and stroke for instance), Chronic kidney disease,
+                Cushing syndrome, Excessive consumption of food, Hyperthyroidism, Pancreatitis. A low level of glucose
+                may indicate hypoglycemia, a condition characterized by a drop in blood glucose to a level where first
+                it causes nervous system symptoms (sweating, palpitations, hunger, trembling, and anxiety), then begins
+                to affect the brain (causing confusion, hallucinations, blurred vision, and sometimes even coma and
+                death). A low blood glucose level (hypoglycemia) may be seen with: Adrenal insufficiency, Drinking
+                excessive alcohol, Severe liver disease, Hypopituitarism, Hypothyroidism, Severe infections, Severe
+                heart failure, Chronic kidney (renal) failure, Insulin overdose, Tumors that produce insulin
+                (insulinomas), Starvation.
+            </p>
+        </div>
+
+        <div>
+            <h3>Disclaimer</h3>
+            <ul>
+                <li>
+                    This report is not intended to replace but to lead by providing comprehensive information. It is
+                    recommended that you consult your doctor/physician for interpretation of results.
+                </li>
+                <li>
+                    All reports might not be applicable for individuals less than 18, pregnant women or individuals
+                    suffering from diseases for which health test has not been performed or symptoms not diagnosed.
+                </li>
+                <li>
+                    This report is based on preventive health test screening and is meant for a healthy lifestyle. It
+                    does not provide any recommendation for life threatening situations.
+                </li>
+                <li>
+                    It is strongly recommended to take required precautions for allergic reactions or sensitivities.
+                    Online screening tools are not diagnostic instruments. You are encouraged to share your results with
+                    a physician or healthcare provider.
+                </li>
+                <li>
+                    The content is provided for information purposes only in believed to be serving as a preventive
+                    health screening and is not intended as and should not be considered to a legal or financial advice.
+                </li>
+                <li>
+                    References and links to third parties do not constitute any endorsements or warranty by this report
+                    generated at the Health Kiosk. The health ATM hereby disclaims all express and implied warranties of
+                    any kind.
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="text-center mt-4">
+        <p>&copy; HAL Cloud Clinic</p>
+    </footer>
+</body>
+
+</html>

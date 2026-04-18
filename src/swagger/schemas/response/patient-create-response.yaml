@@ -1,0 +1,22 @@
+type: object
+properties:
+  success: 
+    type: boolean
+  user:
+    type: object
+    properties:    
+      name: 
+        type: string
+        description: User name
+        required: true
+      gender: 
+        type: string
+        description: User gender
+        required: true
+      email: 
+        type: string
+        description: User email
+        required: true
+      mobile: 
+        type: string
+        description: User mobile

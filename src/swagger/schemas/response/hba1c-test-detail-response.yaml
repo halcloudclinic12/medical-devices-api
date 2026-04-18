@@ -1,0 +1,17 @@
+type: object
+properties:        
+  _id: 
+    type: string
+    description: Id of patient
+  test_type:
+    type: string
+    description: 
+  patient_id: 
+    type: string
+    description: 
+  hba1c: 
+    type: datetime
+  hba1c_result: 
+    type: datetime
+  created_at: 
+    type: datetime

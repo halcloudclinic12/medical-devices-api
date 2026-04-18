@@ -1,0 +1,19 @@
+type: object
+properties:        
+  _id: 
+    type: string
+    description: Id of patient
+  name: 
+    type: string
+    description: 
+  label: 
+    type: string
+    description: 
+  unit: 
+    type: string
+    description: 
+  ranges: 
+    type: string
+    description: 
+  created_at: 
+    type: datetime

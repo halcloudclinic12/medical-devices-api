@@ -1,0 +1,128 @@
+[
+    {
+        "gender": "female",
+        "ageGroup": "1-18",
+        "dateOffset": 0,
+        "label": "Dec - Today - Female Child 1"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "1-18",
+        "dateOffset": 0,
+        "label": "Dec - Today - Female Child 2"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "19-40",
+        "dateOffset": 0,
+        "label": "Dec - Today - Male Young Adult"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "19-40",
+        "dateOffset": 0,
+        "label": "Dec - Today - Female Young Adult"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "41-60",
+        "dateOffset": -7,
+        "label": "Dec - 7 Days Ago - Male"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "41-60",
+        "dateOffset": -7,
+        "label": "Dec - 7 Days Ago - Female"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "61-120",
+        "dateOffset": -15,
+        "label": "Dec - 15 Days Ago - Male"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "61-120",
+        "dateOffset": -15,
+        "label": "Dec - 15 Days Ago - Female"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "19-40",
+        "dateOffset": -35,
+        "label": "Nov - Male Young Adult"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "41-60",
+        "dateOffset": -35,
+        "label": "Nov - Female Middle Age"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "1-18",
+        "dateOffset": -40,
+        "label": "Nov - Male Child"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "61-120",
+        "dateOffset": -45,
+        "label": "Nov - Female Senior"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "41-60",
+        "dateOffset": -65,
+        "label": "Oct - Male Middle Age"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "19-40",
+        "dateOffset": -70,
+        "label": "Oct - Female Young Adult"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "61-120",
+        "dateOffset": -75,
+        "label": "Oct - Male Senior"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "1-18",
+        "dateOffset": -80,
+        "label": "Oct - Female Child"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "19-40",
+        "dateOffset": -95,
+        "label": "Sep - Male Young Adult"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "41-60",
+        "dateOffset": -100,
+        "label": "Sep - Female Middle Age"
+    },
+    {
+        "gender": "male",
+        "ageGroup": "1-18",
+        "dateOffset": -105,
+        "label": "Sep - Male Child"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "61-120",
+        "dateOffset": -110,
+        "label": "Sep - Female Senior 1"
+    },
+    {
+        "gender": "female",
+        "ageGroup": "61-120",
+        "dateOffset": -112,
+        "label": "Sep - Female Senior 2"
+    }
+]

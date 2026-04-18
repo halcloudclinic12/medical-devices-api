@@ -1,0 +1,174 @@
+name: Deploy API to AWS Lightsail (healthbox-api)
+
+on:
+  push:
+    branches: [ dev ]
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22'
+  APP_BUILD_DIR: 'dist'            # build output (compiled JS)
+  ARTIFACT_NAME: 'release.tgz'
+  APP_NAME: 'healthbox-api'        # PM2 process name
+  AWS_REGION: 'ap-south-1'
+
+jobs:
+  run-tests-and-build:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install (clean)
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --passWithNoTests
+
+      - name: Build
+        run: npm run build
+
+      # IMPORTANT: do NOT package node_modules (it blows up artifact size/quota)
+      - name: Package artifact (no node_modules)
+        run: |
+          tar czf "${{ env.ARTIFACT_NAME }}" \
+            package.json package-lock.json \
+            "${{ env.APP_BUILD_DIR }}" \
+            ecosystem.config.cjs 2>/dev/null || true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACT_NAME }}
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: run-tests-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+    timeout-minutes: 30
+    concurrency:
+      group: lightsail-deploy-dev
+      cancel-in-progress: true
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify AWS identity (won't fail)
+        run: |
+          aws sts get-caller-identity
+          aws configure list || true
+
+      - name: Determine runner egress IP
+        id: ip
+        run: echo "ip=$(curl -s https://checkip.amazonaws.com | tr -d '\n')" >> "$GITHUB_OUTPUT"
+
+      - name: Open SSH for runner IP
+        run: |
+          aws lightsail open-instance-public-ports \
+            --instance-name "${{ secrets.LIGHTSAIL_INSTANCE_NAME }}" \
+            --region "${{ env.AWS_REGION }}" \
+            --port-info fromPort=22,toPort=22,protocol=TCP,cidrs=${{ steps.ip.outputs.ip }}/32
+
+      - name: Write SSH key
+        run: |
+          printf "%s" "${{ secrets.LIGHTSAIL_SSH_KEY }}" > key.pem
+          chmod 600 key.pem
+
+      - name: Upload artifact to server
+        run: |
+          scp -i key.pem -o StrictHostKeyChecking=no \
+            "${{ env.ARTIFACT_NAME }}" \
+            "${{ secrets.LIGHTSAIL_SSH_USER }}@${{ secrets.LIGHTSAIL_PUBLIC_IP }}:/tmp/${{ env.ARTIFACT_NAME }}"
+
+      - name: Deploy on server (atomic switch)
+        env:
+          # pass env vars into this step so they exist for the local heredoc interpolation (we're using unquoted EOF)
+          APP_BUILD_DIR: ${{ env.APP_BUILD_DIR }}
+          APP_NAME: ${{ env.APP_NAME }}
+        run: |
+          ssh -i key.pem -o StrictHostKeyChecking=no \
+            "${{ secrets.LIGHTSAIL_SSH_USER }}@${{ secrets.LIGHTSAIL_PUBLIC_IP }}" <<EOF
+          set -euo pipefail
+
+          ARTIFACT_NAME="${{ env.ARTIFACT_NAME }}"
+          APP_BUILD_DIR="${APP_BUILD_DIR}"
+          APP_NAME="${APP_NAME}"
+
+          # You can override DEPLOY_DIR by adding a secret or env if needed
+          DEPLOY_DIR="\${DEPLOY_DIR:-/home/bitnami/workspace}"
+          RELEASES_DIR="\$DEPLOY_DIR/releases"
+          CURRENT_LINK="\$DEPLOY_DIR/current"
+          TS=\$(date +%Y%m%d%H%M%S)
+          NEW_RELEASE="\$RELEASES_DIR/\$TS"
+
+          # Find pm2
+          PM2_PATH="\$(command -v pm2 || true)"
+          if [ -z "\$PM2_PATH" ]; then
+            for p in /opt/bitnami/node/bin/pm2 /usr/bin/pm2 /usr/local/bin/pm2 /opt/bitnami/nodejs/bin/pm2; do
+              [ -x "\$p" ] && PM2_PATH="\$p" && break
+            done
+          fi
+          [ -z "\$PM2_PATH" ] && echo "PM2 not found" >&2 && exit 1
+
+          mkdir -p "\$RELEASES_DIR" "\$NEW_RELEASE"
+          tar xzf "/tmp/\$ARTIFACT_NAME" -C "\$NEW_RELEASE"
+
+          # Install prod deps on server (this replaces shipping node_modules)
+          cd "\$NEW_RELEASE"
+
+          # Speed up installs: shared npm cache
+          export npm_config_cache="\$DEPLOY_DIR/.npm-cache"
+          mkdir -p "\$npm_config_cache"
+
+          # Install production dependencies only
+          npm ci --omit=dev
+
+          # Atomic switch
+          ln -sfn "\$NEW_RELEASE" "\$CURRENT_LINK"
+
+          # Start/reload app
+          if "\$PM2_PATH" list | grep -q "\$APP_NAME"; then
+            "\$PM2_PATH" reload "\$APP_NAME" || true
+          else
+            "\$PM2_PATH" start "\$CURRENT_LINK/\$APP_BUILD_DIR/start.js" --name "\$APP_NAME"
+          fi
+
+          "\$PM2_PATH" save
+
+          # Keep last 5 releases
+          ls -1dt "\$RELEASES_DIR"/* | tail -n +6 | xargs -r rm -rf
+          EOF
+
+      - name: Close SSH port 22
+        if: always()
+        run: |
+          aws lightsail close-instance-public-ports \
+            --instance-name "${{ secrets.LIGHTSAIL_INSTANCE_NAME }}" \
+            --region "${{ env.AWS_REGION }}" \
+            --port-info fromPort=22,toPort=22,protocol=TCP

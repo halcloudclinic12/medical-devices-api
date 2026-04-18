@@ -1,0 +1,40 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      total:
+        type: integer
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            _id: 
+              type: string
+              description: Id of patient
+            name: 
+              type: string
+              description: 
+            label: 
+              type: string
+              description: 
+            range: 
+              type: array
+              description: Range values for the parameter
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string 
+                  min:
+                    type: string 
+                  max:
+                    type: string 
+                  label:
+                    type: string 
+                  sort_order:
+                    type: number
+            created_at: 
+              type: string
+              format: datetime

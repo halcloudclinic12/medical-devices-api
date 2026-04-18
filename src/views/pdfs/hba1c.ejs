@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pdf.css" />
+</head>
+
+<body class="container mt-4">
+    <header class="text-center mb-4">
+        <table>
+            <tr>
+                <td style="width:20%">
+                    <img src="data:image/jpeg;base64,<%= logo %>" class="logo" />
+                </td>
+                <td style="width:50%">
+                    <h1>
+                        <%= patient.name %>
+                    </h1>
+                </td>
+                <td style="width:30%">&nbsp;</td>
+            </tr>
+        </table>
+    </header>
+
+    <main>
+        <div class="p-4">
+            <div class="row mb-3">
+                <div class="col-md-9">
+                    <strong>Clinic :</strong>
+                    <%= clinic.name %>, <%= city.name %>, <%= city.state_name %><br />
+                                <div class="datetime">
+                                    <%= new Date(test.created_at).toLocaleString('en-GB', { day: '2-digit' ,
+                                        month: 'short' , year: 'numeric' , hour: '2-digit' , minute: '2-digit' , hour12:
+                                        true }) %>
+                                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Range</th>
+                            <th>Value</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% [ { label: "hba1c" , value: test.hba1c, result: test.hba1c_result, range: test.hba1c_range }
+                            ].forEach(item=> { %>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <%= item.label ?? '-' %>
+                                    </strong>
+                                </td>
+                                <td>
+                                    <%= item.range ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.value ?? '-' %>
+                                </td>
+                                <td>
+                                    <%= item.result ?? '-' %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h3>Parameters Explanation</h3>
+            <p>
+                <b>HbA1c (Hemoglobin A1c):</b> It is a blood test that measures the average blood sugar (glucose) levels
+                over the past 2-3 months.
+            </p>
+            <br />
+            <ul>
+                <li>
+                    <b>How it works:</b> Glucose in your blood attaches to hemoglobin (the protein in red blood cells
+                    that carries oxygen). HbA1c measures the percentage of hemoglobin that has glucose attached.
+                </li>
+                <li>
+                    <b>Why it's important:</b> It's commonly used to diagnose diabetes and monitor how well diabetes is
+                    being controlled.
+                </li>
+            </ul>
+        </div>
+
+
+        <div>
+            <h3>Disclaimer</h3>
+            <ul>
+                <li>
+                    This report is not intended to replace but to lead by providing comprehensive information. It is
+                    recommended that you consult your doctor/physician for interpretation of results.
+                </li>
+                <li>
+                    All reports might not be applicable for individuals less than 18, pregnant women or individuals
+                    suffering from diseases for which health test has not been performed or symptoms not diagnosed.
+                </li>
+                <li>
+                    This report is based on preventive health test screening and is meant for a healthy lifestyle. It
+                    does not provide any recommendation for life threatening situations.
+                </li>
+                <li>
+                    It is strongly recommended to take required precautions for allergic reactions or sensitivities.
+                    Online screening tools are not diagnostic instruments. You are encouraged to share your results with
+                    a physician or healthcare provider.
+                </li>
+                <li>
+                    The content is provided for information purposes only in believed to be serving as a preventive
+                    health screening and is not intended as and should not be considered to a legal or financial advice.
+                </li>
+                <li>
+                    References and links to third parties do not constitute any endorsements or warranty by this report
+                    generated at the Health Kiosk. The health ATM hereby disclaims all express and implied warranties of
+                    any kind.
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="text-center mt-4">
+        <p>&copy; HAL Cloud Clinic</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      total:
+        type: integer
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            _id: 
+              type: string
+              description: Id of role
+            name: 
+              type: string
+              description: 
+            description: 
+              type: string
+              description: 
+            is_active: 
+              type: boolean
+              description: 
+            created_at: 
+              type: string
+              format: datetime

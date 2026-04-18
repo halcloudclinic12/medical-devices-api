@@ -1,0 +1,18 @@
+type: object
+properties:        
+  _id: 
+    type: string
+  name: 
+    type: string
+    description: 
+  code: 
+    type: string
+    description: 
+  state: 
+    type: object
+    description: 
+  is_active: 
+    type: boolean
+    description: 
+  created_at: 
+    type: datetime

@@ -1,0 +1,7 @@
+{
+    "tc_range": "125 - 200 mg/dL",
+    "tg_range": "< 150 mg/dL",
+    "hdl_range": "≥ 40 mg/dL (men), optimal 50-60+",
+    "ldl_range": "< 100 mg/dL",
+    "tc_hdl_range": "< 4.5 (ratio)"
+}

@@ -1,0 +1,35 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      total:
+        type: integer
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            _id: 
+              type: string
+              description: Id of user
+            first_name: 
+              type: string
+              description: 
+            last_name: 
+              type: string
+              description: 
+            gender: 
+              type: string
+              description: 
+            mobile: 
+              type: string
+              description: 
+            is_active: 
+              type: boolean
+              description: 
+            created_at: 
+              type: string
+              format: datetime
+            image_file: 
+              type: string

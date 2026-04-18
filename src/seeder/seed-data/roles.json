@@ -1,0 +1,33 @@
+[
+    {
+        "name": "ADMINISTRATOR",
+        "description": "",
+        "is_active": true,
+        "is_deleted": false,
+        "updated_at": null,
+        "permissions": [
+            {
+                "module": "roles",
+                "read": true,
+                "write": true,
+                "delete": true
+            }
+        ]
+    },
+    {
+        "name": "USER",
+        "description": "",
+        "is_active": true,
+        "is_deleted": false,
+        "updated_at": null,
+        "permissions": []
+    },
+    {
+        "name": "PATIENT",
+        "description": "",
+        "is_active": true,
+        "is_deleted": false,
+        "updated_at": null,
+        "permissions": []
+    }
+]

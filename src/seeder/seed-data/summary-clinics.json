@@ -1,0 +1,17 @@
+[
+    {
+        "name": "City Health Center",
+        "email": "cityhealthcenter@test.com",
+        "phoneNumber": "9876543210"
+    },
+    {
+        "name": "Family Wellness Clinic",
+        "email": "familywellness@test.com",
+        "phoneNumber": "9876543211"
+    },
+    {
+        "name": "Community Medical Care",
+        "email": "communitymedical@test.com",
+        "phoneNumber": "9876543212"
+    }
+]
