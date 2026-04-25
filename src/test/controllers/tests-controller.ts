@@ -90,7 +90,7 @@ export default class TestsController extends BaseController {
          *         description: Internal server error.
          *
          */
-        this.router.get(constants.API.V1 + constants.API.TESTS + '/download-pdf', this.asyncHandler(AuthMiddleware.verifyJwt), (req: Request, res: Response) => {
+        this.router.get(constants.API.V1 + constants.API.TESTS + '/download-pdf', (req: Request, res: Response) => {
             this.downloadPdf(req, res);
         });
 
