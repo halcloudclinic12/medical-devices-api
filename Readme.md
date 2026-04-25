@@ -214,9 +214,14 @@ Use .env.docker in this case.
 
    To allow github access lightsail instance, perform following steps:
 
-   Create private/public (RSA) key on lightsail instance 
-   Copy the id_rsa.pub (public key) file content to authorized keys `~/.ssh/authorized_keys`
-   Copy id_rsa (private key) content to LIGHTSAIL_DEV_SSH_PRIVATE_KEY on github
+   Create private/public (RSA) key, run following on local: 
+
+```bash
+   ssh-keygen -m PEM -t rsa -b 4096 -C "github-actions-deploy" -f ./hal_rsa
+```
+
+   Copy the id_rsa.pub (public key) file content to authorized keys `~/.ssh/authorized_keys` of lightsail instance.
+   Copy id_rsa (private key) content to LIGHTSAIL_SSH_KEY on github
 
 ## Allow git pull without password
 
